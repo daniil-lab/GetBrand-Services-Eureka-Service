@@ -1,0 +1,2 @@
+com/getbrand/app/services/eureka/EurekaApplication.java
+ com.getbrand.app.services.eureka.EurekaApplication
