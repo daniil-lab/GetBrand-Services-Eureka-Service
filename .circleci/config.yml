@@ -49,4 +49,4 @@ jobs:
            docker build -t devdaniil/eureka_service ./
            docker login -u $DOCKER_USER --password-stdin
            docker push devdaniil/eureka_service
-      |
+      
