@@ -1,4 +1,11 @@
-FROM adoptopenjdk:16-jre-hotspot
-ARG JAR_FILE=*.jar
-COPY ${JAR_FILE} application.jar
-ENTRYPOINT ["java", "-jar", "application.jar"]
+FROM gradle AS build
+
+COPY . /build
+WORKDIR /build
+RUN gradle build
+
+FROM adoptopenjdk:16-jdk
+
+COPY --from=build /build/build/libs/*.jar /app/
+WORKDIR /app
+CMD  java -jar $(ls)
