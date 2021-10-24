@@ -11,9 +11,9 @@ jobs:
     docker:
       # specify the version you desire here
       - image: gradle
-      auth:
-          username: devdaniil
-          password: $DOCKERHUB_PASSWORD
+        auth:
+            username: devdaniil
+            password: $DOCKERHUB_PASSWORD
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
