@@ -11,6 +11,9 @@ jobs:
     docker:
       # specify the version you desire here
       - image: gradle
+      auth:
+          username: devdaniil
+          password: $DOCKERHUB_PASSWORD
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -42,5 +45,8 @@ jobs:
             - ~/.gradle
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
-      # run tests!
-      - run: gradle build
+      - run: |
+           docker build -t devdaniil/eureka_service ./
+           docker login -u $DOCKER_USER --password-stdin
+           docker push devdaniil/eureka_service
+      |
