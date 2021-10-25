@@ -1,43 +1,15 @@
-pipeline{
+pipeline {
+    agent none
 
-	agent any
-
-	environment {
-		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
-	}
-
-	stages {
-
-		stage('Build') {
-
-// 			steps {
-// 				sh 'docker build -t devdaniil/test_jen:latest .'
-// 			}
+    stages {
+        stage("Build Image") {
+            agent {
+                docker { image "docker:18.09-git" }
+            }
 
             steps {
-                sh 'echo $DOCKERHUB_CREDENTIALS'
+                sh 'docker ps'
             }
-		}
-
-// 		stage('Login') {
-//
-// 			steps {
-// 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-// 			}
-// 		}
-//
-// 		stage('Push') {
-//
-// 			steps {
-// 				sh 'docker push devdaniil/test_jen:latest'
-// 			}
-// 		}
-	}
-
-// 	post {
-// 		always {
-// 			sh 'docker logout'
-// 		}
-// 	}
-
+        }
+    }
 }
