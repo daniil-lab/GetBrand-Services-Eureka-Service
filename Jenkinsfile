@@ -1,12 +1,8 @@
 pipeline {
-    agent none
+    agent docker { image "docker:18.09-git" }
 
     stages {
         stage("Build Image") {
-            agent {
-                docker { image "docker:18.09-git" }
-            }
-
             steps {
                 sh 'docker ps'
             }
