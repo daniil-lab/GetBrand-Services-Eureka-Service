@@ -1,5 +1,5 @@
 pipeline {
-    def none
+    agent none
 
     stages {
         stage("Build Image") {
