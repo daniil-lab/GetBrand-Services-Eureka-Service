@@ -11,9 +11,6 @@ jobs:
     docker:
       # specify the version you desire here
       - image: docker:18.09-git
-        auth:
-            username: devdaniil
-            password: $DOCKERHUB_PASSWORD
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -32,6 +29,6 @@ jobs:
 
       - run: |
            docker build -t devdaniil/eureka_service ./
-           docker login -u $DOCKER_USER -p 749e096e-cb17-414b-a4e7-6d052b521264
+           docker login -u devdaniil -p 749e096e-cb17-414b-a4e7-6d052b521264
            docker push devdaniil/eureka_service
       
