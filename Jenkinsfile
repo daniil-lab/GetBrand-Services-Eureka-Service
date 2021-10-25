@@ -10,30 +10,34 @@ pipeline{
 
 		stage('Build') {
 
-			steps {
-				sh 'docker build -t devdaniil/test_jen:latest .'
-			}
+// 			steps {
+// 				sh 'docker build -t devdaniil/test_jen:latest .'
+// 			}
+
+            steps {
+                sh 'echo $DOCKERHUB_CREDENTIALS'
+            }
 		}
 
-		stage('Login') {
-
-			steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-			}
-		}
-
-		stage('Push') {
-
-			steps {
-				sh 'docker push devdaniil/test_jen:latest'
-			}
-		}
+// 		stage('Login') {
+//
+// 			steps {
+// 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+// 			}
+// 		}
+//
+// 		stage('Push') {
+//
+// 			steps {
+// 				sh 'docker push devdaniil/test_jen:latest'
+// 			}
+// 		}
 	}
 
-	post {
-		always {
-			sh 'docker logout'
-		}
-	}
+// 	post {
+// 		always {
+// 			sh 'docker logout'
+// 		}
+// 	}
 
 }
