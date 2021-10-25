@@ -1,5 +1,5 @@
 pipeline {
-    agent docker { image "docker:18.09-git" }
+    def none
 
     stages {
         stage("Build Image") {
