@@ -1,3 +1,4 @@
+
 version: 2
 
 jobs:
@@ -11,10 +12,17 @@ jobs:
       - checkout
 
       - setup_remote_docker:
-            version: 19.03.13
+          version: 19.03.13
 
-      - run: |
-           docker build -t devdaniil/eureka_service ./
-           docker login -u devdaniil -p 749e096e-cb17-414b-a4e7-6d052b521264
-           docker push devdaniil/eureka_service
-      
+      - run:
+          name: "Build Service Container by Dockerfile"
+          command: docker build -t ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME} ./
+
+      - run:
+          name: "Login in Docker"
+          command: docker login -u ${DOCKER_USERNAME} -p ${DOCKER_TOKEN}
+
+      - run:
+          name: "Push service to Docker Hub"
+          command: docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}
+
